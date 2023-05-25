@@ -1,1 +1,1 @@
-# KightsTour
+# KnightsTour
