@@ -9,17 +9,17 @@ import java.util.TreeMap;
  * spaces on the board, in the best case. This approach is known as Warnsdorf's Rule.
  *
  * @author Jason Gersztyn
- * @version 2.0
+ * @version 2.0.1
  * 
  */
 public class SuperSpecialKT {
 
-	private int boardLength; //The length of the board
-	private int board[][]; //The simulated board
+	private int boardLength; //the length of the board
+	private int board[][]; //the simulated board
 	private int maxMoves; //it should take no more than this many moves to solve the puzzle
 	boolean solved = false; //tells whether or not the board is solved
 
-	//List of possible moves for the knight
+	//list of possible moves for the knight
 	private final Point[] MOVES = new Point[]{new Point(-2, -1),
 			new Point(-2, 1), new Point(2, -1), new Point(2, 1), new Point(-1, -2),
 			new Point(-1, 2), new Point(1, -2), new Point(1, 2)};
@@ -45,7 +45,7 @@ public class SuperSpecialKT {
 	}
 	
 	/**
-	 * Designates the starting space for the knight
+	 * Designates the starting space for the knight.
 	 */
 	private void startLocations() {
 		int row = 2 + (int) (Math.random() * (getValidLength()));
@@ -54,8 +54,8 @@ public class SuperSpecialKT {
 	}
 
 	/**
-	 * The space within the two-dimensional array that actually represents the board. Any square with negative two
-	 * as a value can be considered padding.
+	 * The space within the two-dimensional array that actually represents the board.
+	 * Any square with negative two as a value can be considered padding.
 	 * @return the valid length and height of the board
 	 */
 	private int getValidLength() {
@@ -63,7 +63,7 @@ public class SuperSpecialKT {
 	}
 
 	/**
-	 * Helper method to determine if a square is safe for the knight
+	 * Helper method to determine if a square is safe for the knight.
 	 * @param row the row the knight is on
 	 * @param col the column the knight is on
 	 * @param grid the current state of the board which the move is beign performed on
@@ -97,8 +97,8 @@ public class SuperSpecialKT {
 	}
 
 	/**
-	 * Solves the knight's tour using backtracking
-	 * This method also converts the board into a two dimensional array list
+	 * Solves the knight's tour using backtracking.
+	 * This method also converts the board into a two dimensional array list.
 	 * @param sRow the starting row
 	 * @param sCol the starting column
 	 * @return true if there is a solution
@@ -123,7 +123,7 @@ public class SuperSpecialKT {
 	}  
 
 	/**
-	 * Recursive helper method which will solve the knight's tour
+	 * Recursive helper method which will solve the knight's tour.
 	 * @param row the current row
 	 * @param col the current column
 	 * @param nMove the number of moves made thus far
@@ -182,11 +182,11 @@ public class SuperSpecialKT {
 				//temporary board to simulate the following moves
 				ArrayList<ArrayList<Integer>> tempBoard = boardCopier(grid);
 				//use max moves since the value is arbitrary and this array is temporary
-				tempBoard.get(nRow).set(nCol, move + 1000); //the move will easily stick out in debugging
+				tempBoard.get(nRow).set(nCol, move + 1000); //this move will easily stick out in debugging
 				for (Point check : MOVES) {
 					int r = nRow + check.x;
 					int c = nCol + check.y;
-					//not that we only check for a legal move and do not actually move
+					//note that we only check for a legal move and do not actually move
 					if (legalMove(r, c, tempBoard)) {
 						possibleMoves++; //increase the count if this is a possible move from this given location
 					}
@@ -208,7 +208,7 @@ public class SuperSpecialKT {
 	}
 
 	/**
-	 * Copy the two dimensional array list exactly into a new two dimensional array array list
+	 * Copy the two dimensional array list into an identical new two dimensional array list.
 	 * @param grid the array list to be copied
 	 * @return the carbon copy of the list
 	 */
@@ -224,11 +224,11 @@ public class SuperSpecialKT {
 
 	/**
 	 * Create the board to perform the knight's tour on. The board created is a two dimensional array.
-	 * Note that a board is padded on all sides. The valid board are does not include the padding.
+	 * Note that a board is padded on all sides. The valid board does not include the padding.
 	 */
 	private void initializeBoard() {
 		board = new int[boardLength][boardLength];
-		//Make all of the board -1 because have not visited any square
+		//make all of the board -1 because have not visited any square
 
 		for (int r = 0; r < boardLength; r++) {
 			for (int c = 0; c < boardLength; c++) {
